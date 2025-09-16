@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sosal метр</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
         
         * {
             margin: 0;
@@ -14,68 +14,72 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            padding: 20px;
         }
 
         .container {
+            background: #111111;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 400px;
-            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .title {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .subtitle {
-            font-size: 1em;
-            margin-bottom: 40px;
-            opacity: 0.8;
-            font-weight: 300;
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #00ff88;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
+        .subtitle {
+            font-size: 0.9em;
+            margin-bottom: 40px;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .question {
-            font-size: 2.2em;
+            font-size: 3em;
             margin: 40px 0;
-            font-weight: 600;
-            color: white;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 4px;
         }
 
         .sosal-button {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            background: #00ff88;
+            color: #000000;
             border: none;
-            border-radius: 50px;
-            padding: 20px 40px;
-            font-size: 1.4em;
+            border-radius: 4px;
+            padding: 15px 30px;
+            font-size: 1.1em;
             font-weight: 600;
-            color: white;
+            font-family: 'JetBrains Mono', monospace;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            transition: all 0.2s ease;
             margin: 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             min-width: 200px;
         }
 
         .sosal-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            background: #00cc6a;
+            transform: translateY(-1px);
         }
 
         .sosal-button:active {
@@ -83,78 +87,97 @@
         }
 
         .sosal-button:disabled {
-            opacity: 0.7;
+            background: #333333;
+            color: #666666;
             cursor: not-allowed;
             transform: none;
         }
 
         .answer {
-            font-size: 1.3em;
+            font-size: 1.2em;
             margin: 30px 0;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            padding: 20px;
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 4px;
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 400;
+            line-height: 1.4;
         }
 
         .thinking {
-            opacity: 0.7;
+            color: #888888;
+            font-style: italic;
         }
 
         .yes-answer {
-            background: linear-gradient(45deg, #00b894, #00cec9);
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+            background: #0d2818;
+            border-color: #00ff88;
+            color: #00ff88;
         }
 
         .no-answer {
-            background: linear-gradient(45deg, #e17055, #d63031);
-            color: white;
-            box-shadow: 0 4px 15px rgba(225, 112, 85, 0.3);
+            background: #2d1b1b;
+            border-color: #ff4444;
+            color: #ff4444;
         }
 
         .reset-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 30px;
-            padding: 12px 25px;
-            font-size: 1em;
-            font-weight: 500;
-            color: white;
+            background: transparent;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            font-weight: 400;
+            color: #888888;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .reset-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: #666666;
+            color: #ffffff;
+        }
+
+        .divider {
+            height: 1px;
+            background: #333333;
+            margin: 30px 0;
+        }
+
+        .status {
+            font-size: 0.8em;
+            color: #666666;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Адаптивність */
         @media (max-width: 480px) {
             .container {
                 padding: 30px 20px;
-                margin: 20px;
             }
             
             .title {
-                font-size: 2em;
-            }
-            
-            .question {
                 font-size: 1.8em;
             }
             
+            .question {
+                font-size: 2.5em;
+            }
+            
             .sosal-button {
-                font-size: 1.2em;
-                padding: 15px 30px;
+                font-size: 1em;
+                padding: 12px 25px;
                 min-width: 180px;
             }
         }
@@ -162,60 +185,82 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">Sosal метр</div>
-        <div class="subtitle">Магічний бот для відповідей</div>
+        <div class="title">SOSAL METER</div>
+        <div class="subtitle">Binary Decision Engine</div>
         
-        <div class="question">Sosal ?</div>
+        <div class="divider"></div>
+        
+        <div class="question">SOSAL ?</div>
         
         <button class="sosal-button" onclick="askSosal()">
-            Спитати Sosal
+            EXECUTE QUERY
         </button>
         
         <div class="answer" id="answer">
-            Натисніть кнопку вище
+            Press button to initialize
         </div>
         
+        <div class="divider"></div>
+        
         <button class="reset-button" onclick="reset()">
-            Спитати знову
+            Reset
         </button>
+        
+        <div class="status" id="status">
+            System Ready
+        </div>
     </div>
 
     <script>
         const yesAnswers = [
-            "Ти прям заглатував",
-            "Прям як Андрюша",
-            "Чемпіон наху",
-            "За тобою отчим плаче",
-            "Король сасунов",
-            "Ну прям тігр",
-            "Глок глок глок",
-            "Даже женщіна так не сосе",
-            "О да, сасун",
-            "Канєшно ти сосав"
+            "✅ AFFIRMATIVE: User engaged in oral activity",
+            "🍆 CONFIRMED: Performance level comparable to Andrew",
+            "👍 STATUS: Champion-level execution detected",
+            "✨ RESULT: Parental figure experiencing emotional response",
+            "🌟 RANK: King of oral operations",
+            "💫 ANALYSIS: Tiger-level performance confirmed",
+            "🎉 AUDIO: Glock glock glock pattern detected",
+            "🔥 COMPARISON: Exceeds female performance standards",
+            "⭐ VERDICT: Confirmed oral activity participant",
+            "💎 CONCLUSION: Oral activity definitively confirmed"
         ];
 
         const noAnswers = [
-            "Повезло",
-            "Значить любиш коли в очко довблять",
-            "Натурал",
-            "Не сасав",
-            "Нажаль не гей",
-            "В тебе щіт",
-            "Сьодні без біленької",
-            "Чисте лічіко",
-            "Сасали у тебе",
-            "Спиш з закритим ротом"
+            "❌ NEGATIVE: No oral activity detected",
+            "🍑 ALTERNATIVE: Anal preference configuration detected",
+            "👎 STATUS: Heterosexual orientation confirmed",
+            "🚫 RESULT: No oral activity performed",
+            "🤷 OUTCOME: Regrettably not homosexual",
+            "🤔 ANALYSIS: User has alternative preferences",
+            "😞 STATUS: No white substance consumption today",
+            "😔 CONDITION: Clean facial area maintained",
+            "😟 SITUATION: User was recipient of oral activity",
+            "😢 BEHAVIOR: Sleeping with closed mouth detected"
         ];
 
-        const thinkingTexts = ["Думаю...", "Обробляю...", "Аналізую...", "Розраховую..."];
+        const thinkingTexts = [
+            "Processing query...",
+            "Analyzing data...",
+            "Computing result...",
+            "Generating response..."
+        ];
+
+        const statusTexts = [
+            "System Ready",
+            "Processing...",
+            "Query Complete",
+            "Awaiting Input"
+        ];
 
         function askSosal() {
             const answerDiv = document.getElementById('answer');
             const button = document.querySelector('.sosal-button');
+            const statusDiv = document.getElementById('status');
             
             // Блокуємо кнопку
             button.disabled = true;
-            button.textContent = 'Думаю...';
+            button.textContent = 'PROCESSING...';
+            statusDiv.textContent = 'Processing...';
             
             // Показуємо анімацію думання
             let thinkingCount = 0;
@@ -223,9 +268,9 @@
                 answerDiv.innerHTML = thinkingTexts[thinkingCount % thinkingTexts.length];
                 answerDiv.className = 'answer thinking';
                 thinkingCount++;
-            }, 500);
+            }, 600);
             
-            // Через 2 секунди показуємо відповідь
+            // Через 2.5 секунди показуємо відповідь
             setTimeout(() => {
                 clearInterval(thinkingInterval);
                 
@@ -240,14 +285,18 @@
                 
                 // Розблоковуємо кнопку
                 button.disabled = false;
-                button.textContent = 'Спитати Sosal';
-            }, 2000);
+                button.textContent = 'EXECUTE QUERY';
+                statusDiv.textContent = 'Query Complete';
+            }, 2500);
         }
 
         function reset() {
             const answerDiv = document.getElementById('answer');
-            answerDiv.innerHTML = 'Натисніть кнопку вище';
+            const statusDiv = document.getElementById('status');
+            
+            answerDiv.innerHTML = 'Press button to initialize';
             answerDiv.className = 'answer';
+            statusDiv.textContent = 'System Ready';
         }
     </script>
 </body>
