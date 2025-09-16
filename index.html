@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sosatel asker</title>
+    <title>🔮 Sosal метр</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,169 +14,514 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%, 400% 400%, 400% 400%, 400% 400%;
+            animation: gradientShift 15s ease infinite, backgroundMove 25s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 40%);
+            animation: shimmer 10s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%, 100% 50%, 50% 0%, 0% 50%; }
+            25% { background-position: 100% 50%, 0% 50%, 0% 100%, 25% 75%; }
+            50% { background-position: 50% 100%, 50% 0%, 100% 50%, 50% 0%; }
+            75% { background-position: 0% 0%, 100% 100%, 50% 50%, 75% 25%; }
+            100% { background-position: 0% 50%, 100% 50%, 50% 0%, 0% 50%; }
+        }
+
+        @keyframes backgroundMove {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-10px); }
+            50% { transform: translateX(20px) translateY(10px); }
+            75% { transform: translateX(-10px) translateY(20px); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 400px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border-radius: 35px;
+            padding: 60px 50px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            max-width: 500px;
             width: 90%;
+            position: relative;
+            overflow: hidden;
+            animation: containerFloat 6s ease-in-out infinite;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: topShine 3s ease-in-out infinite;
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0px) rotateX(0deg); }
+            50% { transform: translateY(-10px) rotateX(2deg); }
+        }
+
+        @keyframes topShine {
+            0%, 100% { opacity: 0; transform: translateX(-100%); }
+            50% { opacity: 1; transform: translateX(100%); }
         }
 
         .title {
-            font-size: 2.5em;
+            font-size: 3.5em;
+            font-weight: 800;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate, titleShimmer 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .title::after {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -20px;
+            font-size: 0.6em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            from { 
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+                transform: scale(1);
+            }
+            to { 
+                filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes titleShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: rotate(0deg) scale(1); }
+            50% { opacity: 1; transform: rotate(180deg) scale(1.2); }
         }
 
         .subtitle {
-            font-size: 1.2em;
-            margin-bottom: 30px;
+            font-size: 1.3em;
+            margin-bottom: 50px;
             opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: subtitleFade 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtitleFade {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
         }
 
         .question {
-            font-size: 1.8em;
-            margin: 30px 0;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: 2.8em;
+            margin: 50px 0;
+            font-weight: 700;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            animation: questionPulse 4s ease-in-out infinite, questionGlow 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        .question::before,
+        .question::after {
+            content: '🔮';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.5em;
+            animation: crystalFloat 3s ease-in-out infinite;
+        }
+
+        .question::before {
+            left: -40px;
+            animation-delay: 0s;
+        }
+
+        .question::after {
+            right: -40px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes questionPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes questionGlow {
+            from { text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); }
+            to { text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.3); }
+        }
+
+        @keyframes crystalFloat {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-60%) rotate(180deg); }
         }
 
         .sosal-button {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24, #ff8a80, #ff6b6b);
+            background-size: 300% 300%;
+            animation: buttonGradient 4s ease infinite, buttonFloat 3s ease-in-out infinite;
             border: none;
-            border-radius: 50px;
-            padding: 20px 40px;
-            font-size: 1.5em;
-            font-weight: bold;
+            border-radius: 70px;
+            padding: 30px 60px;
+            font-size: 1.8em;
+            font-weight: 700;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
-            min-width: 200px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 15px 35px rgba(255, 107, 107, 0.4),
+                0 0 0 0 rgba(255, 107, 107, 0.7);
+            position: relative;
+            overflow: hidden;
+            min-width: 300px;
+            margin: 40px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes buttonGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes buttonFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .sosal-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .sosal-button:hover::before {
+            left: 100%;
         }
 
         .sosal-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 
+                0 20px 45px rgba(255, 107, 107, 0.6),
+                0 0 0 0 rgba(255, 107, 107, 0.7);
         }
 
         .sosal-button:active {
-            transform: translateY(0);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .sosal-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            animation: none;
         }
 
         .answer {
-            font-size: 1.3em;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            min-height: 60px;
+            font-size: 1.6em;
+            margin: 40px 0;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .answer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.8s;
+        }
+
+        .answer.show::before {
+            transform: translateX(100%);
         }
 
         .thinking {
-            animation: pulse 1s infinite;
+            animation: thinkingPulse 1.2s infinite, shimmer 2.5s infinite;
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+        @keyframes thinkingPulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         .yes-answer {
-            background: linear-gradient(45deg, #00b894, #00cec9);
+            background: linear-gradient(45deg, #00b894, #00cec9, #55efc4, #00b894);
+            background-size: 300% 300%;
+            animation: yesGradient 3s ease infinite;
             color: white;
+            box-shadow: 0 15px 35px rgba(0, 184, 148, 0.4);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        @keyframes yesGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .no-answer {
-            background: linear-gradient(45deg, #e17055, #d63031);
+            background: linear-gradient(45deg, #e17055, #d63031, #ff7675, #e17055);
+            background-size: 300% 300%;
+            animation: noGradient 3s ease infinite;
             color: white;
+            box-shadow: 0 15px 35px rgba(225, 112, 85, 0.4);
+            border: 1px solid rgba(225, 112, 85, 0.3);
+        }
+
+        @keyframes noGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .reset-button {
             background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 1em;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 40px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            transition: all 0.4s ease;
+            margin-top: 30px;
+            backdrop-filter: blur(15px);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .reset-button:hover {
             background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
         }
 
         .emoji {
-            font-size: 2em;
-            margin: 10px 0;
+            font-size: 3em;
+            margin: 20px 0;
+            animation: emojiFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes emojiFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Частинки */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            animation: particleFloat 4s ease-out forwards;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(0) rotate(360deg);
+            }
+        }
+
+        /* Адаптивність */
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 25px;
+                margin: 20px;
+            }
+            
+            .title {
+                font-size: 2.8em;
+            }
+            
+            .question {
+                font-size: 2.2em;
+            }
+            
+            .sosal-button {
+                font-size: 1.5em;
+                padding: 25px 45px;
+                min-width: 250px;
+            }
+
+            .question::before,
+            .question::after {
+                display: none;
+            }
+        }
+
+        /* Анімація появи */
+        .container {
+            animation: containerAppear 1s cubic-bezier(0.4, 0, 0.2, 1), containerFloat 6s ease-in-out infinite 1s;
+        }
+
+        @keyframes containerAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8) rotateX(20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+
+        /* Додаткові ефекти */
+        .magic-sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleFloat 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg) translateY(-50px);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title"> Sosatel asker</div>
-        <div class="subtitle">Бот для сосальних справ</div>
+        <div class="title">🔮 Sosal метр</div>
+        <div class="subtitle">Магічний бот для відповідей</div>
         
-        <div class="question">Сосав ?</div>
+        <div class="question">Sosal ?</div>
         
         <button class="sosal-button" onclick="askSosal()">
-            Запитати Sosatel
+            🔮 Спитати Sosal
         </button>
         
         <div class="answer" id="answer">
             Натисніть кнопку вище
         </div>
+        
+        <button class="reset-button" onclick="reset()">
+            🔄 Спитати знову
+        </button>
     </div>
 
     <script>
         const yesAnswers = [
             "✅ Ти прям заглатував",
-            "🎯 Прям як Андрюша",
+            "🍆 Прям як Андрюша",
             "👍 Чемпіон наху",
             "✨ За тобою отчим плаче",
             "🌟 Король сасунов",
             "💫 Ну прям тігр",
             "🎉 Глок глок глок",
-            "🔥 Даже женщіна так не СОСЕ",
+            "🔥 Даже женщіна так не сосе",
             "⭐ О да, сасун",
             "💎 Канєшно ти сосав"
         ];
 
         const noAnswers = [
             "❌ Повезло",
-            "🚫 Значить любиш коли в очко довблять",
+            "🍑 Значить любиш коли в очко довблять",
             "👎 Натурал",
-            "💔 Не сасав",
-            "😔 Нажаль не гей",
+            "🚫 Не сасав",
+            "🤷 Нажаль не гей",
             "🤔 В тебе щіт",
             "😞 Сьодні без біленької",
-            "😕 Чисте лічіко",
+            "😔 Чисте лічіко",
             "😟 Сасали у тебе",
             "😢 Спиш з закритим ротом"
         ];
 
-        const thinkingEmojis = ["🤔", "🍆", "🥛", "👌", "👈", "💅", "🎯", "♂️", "🔞", "⭐"];
+        const thinkingEmojis = ["🤔", "💭", "🔮", "✨", "🌟", "💫", "🎯", "🔍", "💎", "⭐"];
 
         function askSosal() {
             const answerDiv = document.getElementById('answer');
@@ -182,7 +529,11 @@
             
             // Блокуємо кнопку
             button.disabled = true;
-            button.textContent = '🔄 Обробка ...';
+            button.textContent = '🔄 Думаю...';
+            
+            // Створюємо частинки та спарклі
+            createParticles();
+            createSparkles();
             
             // Показуємо анімацію думання
             let thinkingCount = 0;
@@ -190,9 +541,9 @@
                 answerDiv.innerHTML = `${thinkingEmojis[thinkingCount % thinkingEmojis.length]} Обробляю...`;
                 answerDiv.className = 'answer thinking';
                 thinkingCount++;
-            }, 200);
+            }, 250);
             
-            // Через 2 секунди показуємо відповідь
+            // Через 2.5 секунди показуємо відповідь
             setTimeout(() => {
                 clearInterval(thinkingInterval);
                 
@@ -201,14 +552,14 @@
                 const answers = isYes ? yesAnswers : noAnswers;
                 const answer = answers[Math.floor(Math.random() * answers.length)];
                 
-                // Показуємо відповідь
+                // Показуємо відповідь з анімацією
                 answerDiv.innerHTML = answer;
-                answerDiv.className = `answer ${isYes ? 'yes-answer' : 'no-answer'}`;
+                answerDiv.className = `answer ${isYes ? 'yes-answer' : 'no-answer'} show`;
                 
                 // Розблоковуємо кнопку
                 button.disabled = false;
-                button.textContent = 'Запитати правду у Sosatel';
-            }, 2000);
+                button.textContent = '🔮 Спитати Sosal';
+            }, 2500);
         }
 
         function reset() {
@@ -217,10 +568,53 @@
             answerDiv.className = 'answer';
         }
 
+        function createParticles() {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(particle);
+                
+                // Видаляємо частинку після анімації
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 4000);
+            }
+        }
+
+        function createSparkles() {
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'magic-sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1 + 's';
+                document.body.appendChild(sparkle);
+                
+                // Видаляємо спаркл після анімації
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.parentNode.removeChild(sparkle);
+                    }
+                }, 2000);
+            }
+        }
+
         // Додаємо ефект при завантаженні
         window.addEventListener('load', () => {
-            document.querySelector('.container').style.animation = 'fadeIn 0.5s ease-in';
+            document.querySelector('.container').style.animation = 'containerAppear 1s cubic-bezier(0.4, 0, 0.2, 1), containerFloat 6s ease-in-out infinite 1s';
         });
+
+        // Додаємо випадкові спарклі кожні 3 секунди
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                createSparkles();
+            }
+        }, 3000);
     </script>
 </body>
 </html>
