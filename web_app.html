@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosal метр</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .question {
+            font-size: 1.8em;
+            margin: 30px 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .sosal-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 50px;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            min-width: 200px;
+        }
+
+        .sosal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sosal-button:active {
+            transform: translateY(0);
+        }
+
+        .answer {
+            font-size: 1.3em;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+
+        .thinking {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .yes-answer {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+        }
+
+        .no-answer {
+            background: linear-gradient(45deg, #e17055, #d63031);
+            color: white;
+        }
+
+        .reset-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .reset-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">🔮 Sosal метр</div>
+        <div class="subtitle">Магічний бот для відповідей</div>
+        
+        <div class="question">Sosal ?</div>
+        
+        <button class="sosal-button" onclick="askSosal()">
+            🔮 Спитати Sosal
+        </button>
+        
+        <div class="answer" id="answer">
+            Натисніть кнопку вище
+        </div>
+        
+        <button class="reset-button" onclick="reset()">
+            🔄 Спитати знову
+        </button>
+    </div>
+
+    <script>
+        const yesAnswers = [
+            "✅ Так, звичайно!",
+            "🎯 Абсолютно так!",
+            "👍 Так, це точно!",
+            "✨ Так, без сумнівів!",
+            "🌟 Так, це правда!",
+            "💫 Так, це вірно!",
+            "🎉 Так, це точно так!",
+            "🔥 Так, це правда!",
+            "⭐ Так, це вірно!",
+            "💎 Так, це точно!"
+        ];
+
+        const noAnswers = [
+            "❌ Ні, звичайно ні!",
+            "🚫 Абсолютно ні!",
+            "👎 Ні, це не так!",
+            "💔 Ні, це не вірно!",
+            "😔 Ні, це не правда!",
+            "🤔 Ні, це не так!",
+            "😞 Ні, це не вірно!",
+            "😕 Ні, це не правда!",
+            "😟 Ні, це не так!",
+            "😢 Ні, це не вірно!"
+        ];
+
+        const thinkingEmojis = ["🤔", "💭", "🔮", "✨", "🌟", "💫", "🎯", "🔍", "💎", "⭐"];
+
+        function askSosal() {
+            const answerDiv = document.getElementById('answer');
+            const button = document.querySelector('.sosal-button');
+            
+            // Блокуємо кнопку
+            button.disabled = true;
+            button.textContent = '🔄 Думаю...';
+            
+            // Показуємо анімацію думання
+            let thinkingCount = 0;
+            const thinkingInterval = setInterval(() => {
+                answerDiv.innerHTML = `${thinkingEmojis[thinkingCount % thinkingEmojis.length]} Думаю...`;
+                answerDiv.className = 'answer thinking';
+                thinkingCount++;
+            }, 200);
+            
+            // Через 2 секунди показуємо відповідь
+            setTimeout(() => {
+                clearInterval(thinkingInterval);
+                
+                // Випадково вибираємо Так або Ні
+                const isYes = Math.random() < 0.5;
+                const answers = isYes ? yesAnswers : noAnswers;
+                const answer = answers[Math.floor(Math.random() * answers.length)];
+                
+                // Показуємо відповідь
+                answerDiv.innerHTML = answer;
+                answerDiv.className = `answer ${isYes ? 'yes-answer' : 'no-answer'}`;
+                
+                // Розблоковуємо кнопку
+                button.disabled = false;
+                button.textContent = '🔮 Спитати Sosal';
+            }, 2000);
+        }
+
+        function reset() {
+            const answerDiv = document.getElementById('answer');
+            answerDiv.innerHTML = 'Натисніть кнопку вище';
+            answerDiv.className = 'answer';
+        }
+
+        // Додаємо ефект при завантаженні
+        window.addEventListener('load', () => {
+            document.querySelector('.container').style.animation = 'fadeIn 0.5s ease-in';
+        });
+    </script>
+</body>
+</html>
+

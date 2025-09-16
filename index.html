@@ -197,7 +197,7 @@
         </button>
         
         <div class="answer" id="answer">
-            Press button to initialize
+            Натисніть кнопку для ініціалізації
         </div>
         
         <div class="divider"></div>
@@ -207,49 +207,49 @@
         </button>
         
         <div class="status" id="status">
-            System Ready
+            Система готова
         </div>
     </div>
 
     <script>
         const yesAnswers = [
-            "✅ AFFIRMATIVE: User engaged in oral activity",
-            "🍆 CONFIRMED: Performance level comparable to Andrew",
-            "👍 STATUS: Champion-level execution detected",
-            "✨ RESULT: Parental figure experiencing emotional response",
-            "🌟 RANK: King of oral operations",
-            "💫 ANALYSIS: Tiger-level performance confirmed",
-            "🎉 AUDIO: Glock glock glock pattern detected",
-            "🔥 COMPARISON: Exceeds female performance standards",
-            "⭐ VERDICT: Confirmed oral activity participant",
-            "💎 CONCLUSION: Oral activity definitively confirmed"
+            "✅ Ти прям заглатував",
+            "🍆 Прям як Андрюша",
+            "👍 Чемпіон наху",
+            "✨ За тобою отчим плаче",
+            "🌟 Король сасунов",
+            "💫 Ну прям тігр",
+            "🎉 Глок глок глок",
+            "🔥 Даже женщіна так не сосе",
+            "⭐ О да, сасун",
+            "💎 Канєшно ти сосав"
         ];
 
         const noAnswers = [
-            "❌ NEGATIVE: No oral activity detected",
-            "🍑 ALTERNATIVE: Anal preference configuration detected",
-            "👎 STATUS: Heterosexual orientation confirmed",
-            "🚫 RESULT: No oral activity performed",
-            "🤷 OUTCOME: Regrettably not homosexual",
-            "🤔 ANALYSIS: User has alternative preferences",
-            "😞 STATUS: No white substance consumption today",
-            "😔 CONDITION: Clean facial area maintained",
-            "😟 SITUATION: User was recipient of oral activity",
-            "😢 BEHAVIOR: Sleeping with closed mouth detected"
+            "❌ Повезло",
+            "🍑 Значить любиш коли в очко довблять",
+            "👎 Натурал",
+            "🚫 Не сасав",
+            "🤷 Нажаль не гей",
+            "🤔 В тебе щіт",
+            "😞 Сьодні без біленької",
+            "😔 Чисте лічіко",
+            "😟 Сасали у тебе",
+            "😢 Спиш з закритим ротом"
         ];
 
         const thinkingTexts = [
-            "Processing query...",
-            "Analyzing data...",
-            "Computing result...",
-            "Generating response..."
+            "Думаю...",
+            "Обробляю...",
+            "Аналізую...",
+            "Розраховую..."
         ];
 
         const statusTexts = [
-            "System Ready",
-            "Processing...",
-            "Query Complete",
-            "Awaiting Input"
+            "Система готова",
+            "Обробка...",
+            "Запит виконано",
+            "Очікування вводу"
         ];
 
         function askSosal() {
@@ -259,8 +259,8 @@
             
             // Блокуємо кнопку
             button.disabled = true;
-            button.textContent = 'PROCESSING...';
-            statusDiv.textContent = 'Processing...';
+            button.textContent = '🔄 ОБРОБКА...';
+            statusDiv.textContent = 'Обробка...';
             
             // Показуємо анімацію думання
             let thinkingCount = 0;
@@ -285,8 +285,8 @@
                 
                 // Розблоковуємо кнопку
                 button.disabled = false;
-                button.textContent = 'EXECUTE QUERY';
-                statusDiv.textContent = 'Query Complete';
+                button.textContent = '🔮 ВИКОНАТИ ЗАПИТ';
+                statusDiv.textContent = 'Запит виконано';
             }, 2500);
         }
 
@@ -294,9 +294,9 @@
             const answerDiv = document.getElementById('answer');
             const statusDiv = document.getElementById('status');
             
-            answerDiv.innerHTML = 'Press button to initialize';
+            answerDiv.innerHTML = 'Натисніть кнопку для ініціалізації';
             answerDiv.className = 'answer';
-            statusDiv.textContent = 'System Ready';
+            statusDiv.textContent = 'Система готова';
         }
     </script>
 </body>
